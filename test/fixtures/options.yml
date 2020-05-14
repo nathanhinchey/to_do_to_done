@@ -1,0 +1,11 @@
+# Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  question: one
+  value: MyText
+  rank: 1
+
+two:
+  question: two
+  value: MyText
+  rank: 1

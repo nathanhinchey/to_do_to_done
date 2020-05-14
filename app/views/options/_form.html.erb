@@ -1,0 +1,18 @@
+<p>
+  <strong>Question:</strong> <%= link_to question.text, question_path(question) %>
+</p>
+
+<%= form_with model: [question, option], local: true do |form| %>
+  <p>
+    <%= form.label :value %><br>
+    <%= form.text_field :value %>
+  </p>
+
+  <p>
+    <%= form.label :rank %><br>
+    <%= form.number_field :rank %><br>
+
+  <p>
+    <%= form.submit %>
+  </p>
+<% end %>

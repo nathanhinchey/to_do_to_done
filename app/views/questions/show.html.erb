@@ -1,4 +1,17 @@
+<h1><%= @question.text %></h1>
+<p><%= link_to "Edit", edit_question_path(@question) %></p>
 <p>
-  <strong>Question:</strong>
-  <%= @question.text %>
+  <strong>Options:</strong>
+  <ul>
+    <% @options&.each do |option| %>
+    <li>
+      <span class="option-value">
+        <%= option.value %>
+      </span>
+      <%= link_to "edit", edit_question_option_path(@question, option) %>
+      <%= button_to "remove", question_option_path(@question, option), method: :delete, form: {class: 'remove-option'} %>
+    </li>
+    <% end %>
+  </ul>
+  <%= link_to "add an option", new_question_option_path(@question) %>
 </p>

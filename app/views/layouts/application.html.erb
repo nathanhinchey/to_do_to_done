@@ -11,11 +11,8 @@
 
   <body>
     <%= render partial: 'layouts/top_nav' %>
-    <% flash.each do |type, msg| %>
-    <div class="flash <%= type %>">
-      <%= msg %>
-    </div>
-    <% end %>
+    <%= render partial: 'layouts/flashes' %>
+
     <%= yield %>
   </body>
 </html>

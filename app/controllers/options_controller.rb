@@ -8,10 +8,10 @@ class OptionsController < ApplicationController
   def create
     @option = @question.options.build(option_params)
     if @option.save
-      flash[:success] = 'Added option'
+      flash.notice = 'Added option'
       redirect_to @question
     else
-      flash[:error] = @option.errors.full_messages.join('. ')
+      flash.alert = @option.errors.full_messages.join('. ')
       redirect_back(fallback_location: new_question_option_path(@question))
     end
   end
@@ -23,10 +23,10 @@ class OptionsController < ApplicationController
   def update
     @option = Option.find(params[:id])
     if @option.update(option_params)
-      flash[:success] = 'Updated option'
+      flash[:notice] = 'Updated option'
       redirect_to @question
     else
-      flash[:error] = @option.errors.full_messages.join('. ')
+      flash.alert = @option.errors.full_messages.join('. ')
       redirect_back(fallback_location: new_question_option_path(@question))
     end
   end
@@ -34,9 +34,9 @@ class OptionsController < ApplicationController
   def destroy
     @option = Option.find(params[:id])
     if @option.destroy
-      flash[:success] = "Option '#{@option.value}' deleted"
+      flash.notice = "Option '#{@option.value}' deleted"
     else
-      flash[:error] = @option.errors.full_messages.join('. ')
+      flash.alert = @option.errors.full_messages.join('. ')
     end
     redirect_to @question
   end

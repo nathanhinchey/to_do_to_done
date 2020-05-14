@@ -4,7 +4,12 @@ class QuestionsController < ApplicationController
   end
 
   def create
-    @question = Question.create(question_params)
+    @question = Question.new(question_params)
+    if @question.save
+      flash.notice = 'Question created'
+    else
+      flash.alert = @question.errors.full_messages.join('. ')
+    end
     redirect_to @question
   end
 
@@ -24,9 +29,9 @@ class QuestionsController < ApplicationController
   def update
     @question = Question.find(params[:id])
     if @question.update(question_params)
-      flash[:success] = 'Question updated'
+      flash.notice = 'Question updated'
     else
-      flash[:error] = @question.errors.full_messages.join('. ')
+      flash.alert = @question.errors.full_messages.join('. ')
     end
     redirect_to @question
   end

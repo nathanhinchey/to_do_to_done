@@ -14,9 +14,9 @@
  *= require_self
  */
 
-.flash.success {
+.flash.notice {
   background: lightgreen;
 }
-.flash.error {
+.flash.alert {
   background: lightpink;
 }

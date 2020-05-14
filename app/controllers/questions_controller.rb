@@ -17,6 +17,10 @@ class QuestionsController < ApplicationController
     @question = Question.find(params[:id])
   end
 
+  def index
+    @questions = Question.all
+  end
+
   def update
     @question = Question.find(params[:id])
     if @question.update(question_params)

@@ -1,0 +1,14 @@
+<%= form_with model: survey, local: true do |form| %>
+  <p>
+    <%= form.label :date %><br>
+    <%= form.date_field :date %>
+  </p>
+
+  <p>
+    <%= form.label :title %><br>
+    <%= form.text_field :title %><br>
+
+  <p>
+    <%= form.submit %>
+  </p>
+<% end %>

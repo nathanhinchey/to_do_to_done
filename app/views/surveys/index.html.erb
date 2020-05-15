@@ -1,0 +1,6 @@
+<h1>My Surveys</h1>
+<ul>
+<% @surveys.each do |survey| %>
+  <li><%= link_to "#{survey.title} (#{survey.date})", survey %></li>
+<% end %>
+</ul>

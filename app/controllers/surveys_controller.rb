@@ -12,7 +12,7 @@ class SurveysController < ApplicationController
       redirect_to @survey
     else
       flash.alert = @survey.errors.full_messages
-      redirect_back(fall_back: new_survey_path)
+      redirect_back(fallback_location: new_survey_path)
     end
   end
 

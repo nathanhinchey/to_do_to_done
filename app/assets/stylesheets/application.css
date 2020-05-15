@@ -23,3 +23,6 @@
 .flash.alert {
   background: lightpink;
 }
+.remove-button {
+  display: inline;
+}

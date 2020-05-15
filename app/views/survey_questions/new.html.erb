@@ -1,0 +1,12 @@
+<h1>Attach a question to a survey</h1>
+<p>Survey: <strong><%= @survey_question.survey.title %> (<%= @survey_question.survey.date %>)</strong></p>
+<%= form_with model: [@survey_question.survey, @survey_question], local: true do |form| %>
+  <p>
+    <%= form.label :question %><br>
+    <%= form.collection_select(:question_id, current_user.questions.all, :id, :text) %>
+  </p>
+
+  <p>
+    <%= form.submit %>
+  </p>
+<% end %>

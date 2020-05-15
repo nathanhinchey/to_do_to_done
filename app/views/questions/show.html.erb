@@ -9,7 +9,7 @@
         <%= option.value %>
       </span>
       <%= link_to "edit", edit_question_option_path(@question, option) %>
-      <%= button_to "remove", question_option_path(@question, option), method: :delete, form: {class: 'remove-option'} %>
+      <%= button_to "remove", question_option_path(@question, option), method: :delete, form: {class: 'remove-button'} %>
     </li>
     <% end %>
   </ul>

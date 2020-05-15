@@ -1,2 +1,11 @@
 <h1><%= @survey.title %></h1>
 <h2><%= @survey.date %></h2>
+<ul>
+  <% @survey.survey_questions.each do |survey_question| %>
+    <li>
+      <%= link_to survey_question.question.text, survey_question.question %>
+      <%= button_to 'Remove question', survey_survey_question_path(@survey, survey_question), method: :delete, form: {class: 'remove-button'} %>
+    </li>
+  <% end %>
+</ul>
+<%= link_to 'Add a question', new_survey_survey_question_path(@survey) %>

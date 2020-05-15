@@ -1,10 +1,13 @@
 class QuestionsController < ApplicationController
+  before_action :authenticate_user!
+  before_action :verify_user_access, only: [:show, :edit]
+  
   def new
     @question = Question.new
   end
 
   def create
-    @question = Question.new(question_params)
+    @question = Question.new(question_params.merge(user: current_user))
     if @question.save
       flash.notice = 'Question created'
     else
@@ -23,7 +26,7 @@ class QuestionsController < ApplicationController
   end
 
   def index
-    @questions = Question.all
+    @questions = current_user.questions
   end
 
   def update
@@ -40,5 +43,15 @@ class QuestionsController < ApplicationController
   
   def question_params
     params.require(:question).permit(:text)
+  end
+
+  def verify_user_access
+    @question = Question.find(params[:id])
+    if @question.user == current_user
+      true
+    else
+      flash.alert = "That's not yours!"
+      redirect_to root_path
+    end
   end
 end

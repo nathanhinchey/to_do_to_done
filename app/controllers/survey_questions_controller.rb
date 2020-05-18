@@ -16,6 +16,16 @@ class SurveyQuestionsController < ApplicationController
     end
   end
 
+  def destroy
+    @survey_question = SurveyQuestion.find(params[:id])
+    if @survey_question.destroy
+      flash.notice = 'Successfully removed question from survey'
+    else
+      flash.alert = @survey_question.errors.full_messages.join('. ')
+    end
+    redirect_to @survey
+  end
+
   private
 
   def survey_question_params

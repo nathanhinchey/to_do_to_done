@@ -24,6 +24,11 @@ class SurveysController < ApplicationController
     @surveys = current_user.surveys
   end
 
+  # page for taking the survey
+  def take
+    @survey = Survey.find(params[:id])
+  end
+
   private
 
   def survey_params

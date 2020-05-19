@@ -9,6 +9,7 @@ Rails.application.routes.draw do
   end
 
   resources :surveys do
+    get 'take'
     resources :survey_questions
   end
 end

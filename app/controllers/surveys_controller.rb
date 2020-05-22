@@ -26,10 +26,24 @@ class SurveysController < ApplicationController
 
   # page for taking the survey
   def take
-    @survey = Survey.find(params[:id])
+    @survey = Survey.find(params[:survey_id])
+  end
+
+  # target for saving #take answers
+  def save_answers
+    option_ids = survey_answer_params[:option_ids]
+    ActiveRecord::Base.transaction do
+      option_ids.each do |option_id|
+        Answer.create(option_id: option_id, survey_id: params[:survey_id])
+      end
+    end
   end
 
   private
+
+  def survey_answer_params
+    params.require(:survey_answer).permit(option_ids: [])
+  end
 
   def survey_params
     params.require(:survey).permit(:date, :title)

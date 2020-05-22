@@ -10,6 +10,7 @@ Rails.application.routes.draw do
 
   resources :surveys do
     get 'take'
+    post 'take', action: 'save_answers', as: 'save_answers'
     resources :survey_questions
   end
 end

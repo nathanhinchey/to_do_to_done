@@ -1,0 +1,12 @@
+<div class="question-answer">
+  <span><%= question.text %></span>
+  <% question.options.each do |option| %>
+    <input type="checkbox"
+           id="option-<%= option.id %>"
+           name="survey_answer[option_ids][]"
+           value="<%= option.id %>">
+    <label for="option-<%= option.id %>">
+      <%= option.value %>
+    </label>
+  <% end %>
+</div>

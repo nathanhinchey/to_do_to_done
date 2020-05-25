@@ -1,24 +1,21 @@
-# README
+# To-Do to Done
+An app for doing manual daily tracking for whatever in your life you want to track.
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+* One survey per day
+* Surveys always contain all active quesions
 
-Things you may want to cover:
+If I want to go back to the concept I've built so far I can either checkout this point in history, or just do it again, it wasn't that complicated.
 
-* Ruby version
+## Data Schema
 
-* System dependencies
+There are essentially only questions and answers, you just answer questions for a selected day.
 
-* Configuration
+### Question
+* `body`: the text of the question
+* `options`: the possible answer
+* `allow_multiple`: whether to allow more than one answer
 
-* Database creation
-
-* Database initialization
-
-* How to run the test suite
-
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...
+### Answer
+* `question`: what question is being answered
+* `options`: which options are selected
+* `date`: what day this answer is for

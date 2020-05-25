@@ -1,24 +1,15 @@
-# README
+# "To Do" to "Done"
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+An app to track whatever you feel like tracking
 
-Things you may want to cover:
+# Plans
 
-* Ruby version
+## 2020-05-25
 
-* System dependencies
+I want to reshape this to be more like my initial intention:
 
-* Configuration
+* One survey per day
+* Surveys always contain all quesions
+  - later, all active questions
 
-* Database creation
-
-* Database initialization
-
-* How to run the test suite
-
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...
+If I want to go back to the concept I've built so far I can either checkout this point in history, or just do it again, it wasn't that complicated.

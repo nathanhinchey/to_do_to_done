@@ -14,8 +14,10 @@ There are essentially only questions and answers, you just answer questions for 
 * `body`: the text of the question
 * `options`: the possible answer
 * `allow_multiple`: whether to allow more than one answer
+* `active`: whether the question should be shown for new days
 
 ### Answer
 * `question`: what question is being answered
 * `options`: which options are selected
 * `date`: what day this answer is for
+* `essay`: custom text answer

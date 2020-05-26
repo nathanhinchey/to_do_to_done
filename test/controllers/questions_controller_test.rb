@@ -41,6 +41,19 @@ class QuestionsControllerTest < ActionDispatch::IntegrationTest
     assert_redirected_to new_question_path
   end
 
+  test "should create question with answer options" do
+    # arrange
+    body = 'What is your favorite color?'
+    options = ['black', 'white']
+    params = { question: { body: body, options: options } }
+    # act
+    post questions_path, params: params
+    # assert
+    created_question = Question.where(body: body)
+    assert_equal 1, created_question.count
+    assert_equal options, created_question.first.options
+  end
+
   # #show
   test 'should show a question' do
     # arrange

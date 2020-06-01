@@ -64,4 +64,112 @@ class QuestionsControllerTest < ActionDispatch::IntegrationTest
     # assert
     assert_includes response.body, question_body
   end
+
+  test 'should show question options' do
+    # arrange
+    question_body = 'Is this a question?'
+    question_options = ['No it is a dog', 'nope, a cat']
+    question = Question.create(body: question_body, options: question_options)
+    # act
+    get question_path(question)
+    # assert
+    assert_includes response.body, question_options[0]
+    assert_includes response.body, question_options[1]
+  end
+
+  # #index
+  test 'should show all questions' do
+    # arrange
+    question_1 = Question.create(body: 'first question here')
+    question_2 = Question.create(body: 'seconcd question lololol')
+    # act
+    get questions_path
+    # assert
+    assert_includes response.body, question_1.body
+    assert_includes response.body, question_2.body
+  end
+
+  test 'should include link to edit question' do
+    # arrange
+    question = Question.create(body: 'This is a question lmao rofl bbq')
+    # act
+    get questions_path
+    # assert
+    assert_includes response.body, edit_question_path(question)
+  end
+
+  # #edit
+  test 'should render an edit page' do
+    # arrange
+    question = Question.create(body: 'This is a question i think but idk')
+    # act
+    get edit_question_path(question)
+    # assert
+    assert_response :success
+  end
+
+  test 'should include current question body' do
+    # arrange
+    question = Question.create(body: 'this is a question body or whatever bro')
+    # act
+    get edit_question_path(question)
+    # assert
+    assert_includes response.body, question.body
+  end
+
+  # #update
+  test 'should update question with params' do
+    # arrange
+    edited_body = 'After edits omg'
+    question = Question.create(body: 'Before any edits')
+    params = { question: { body: edited_body } }
+    # act
+    patch question_path(question), params: params
+    # assert
+    assert_equal edited_body, question.reload.body
+  end
+
+  test 'should redirect to edited question' do
+    # arrange
+    edited_body = 'After edits omg'
+    question = Question.create(body: 'Before any edits')
+    params = { question: { body: edited_body } }
+    # act
+    patch question_path(question), params: params
+    # assert
+    assert_redirected_to question
+  end
+
+  test 'should show success message' do
+    # arrange
+    edited_body = 'After edits omg'
+    question = Question.create(body: 'Before any edits')
+    params = { question: { body: edited_body } }
+    # act
+    patch question_path(question), params: params
+    follow_redirect!
+    # assert
+    assert_select '.alert-notice', 'Successfully edited question'
+  end
+
+  test 'should redirect to edit if udpate fails' do
+    # arrange
+    question = Question.create(body: 'Before any edits')
+    params = { question: { body: '' } } # empty string is inavlid
+    # act
+    patch question_path(question), params: params
+    # assert
+    assert_redirected_to edit_question_path(question)
+  end
+
+  test 'should show errors if udpate fails' do
+    # arrange
+    question = Question.create(body: 'Before any edits')
+    params = { question: { body: '' } } # empty string is inavlid
+    # act
+    patch question_path(question), params: params
+    follow_redirect!
+    # assert
+    assert_select '.alert-alert', "Body can't be blank"
+  end
 end
